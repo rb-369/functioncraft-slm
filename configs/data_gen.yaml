@@ -1,0 +1,29 @@
+# Synthetic Data Generation & Distillation Configuration
+generation:
+  num_samples_per_schema: 250
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  random_seed: 42
+
+teacher_model:
+  provider: "mock" # "openai", "anthropic", or "mock" (offline engine)
+  model_name: "gpt-4o-mini"
+  temperature: 0.7
+  max_tokens: 1024
+
+perturbation:
+  negative_sample_ratio: 1.0 # 1 negative sample per positive sample for DPO
+  strategies:
+    - name: "hallucinated_param"
+      weight: 0.3
+      description: "Injects plausible but undeclared parameters into the function call"
+    - name: "syntax_corruption"
+      weight: 0.25
+      description: "Creates unclosed brackets, trailing commas, or invalid JSON quotes"
+    - name: "wrong_tool_selection"
+      weight: 0.25
+      description: "Selects a conflicting or irrelevant tool for the user intent"
+    - name: "missing_required_param"
+      weight: 0.2
+      description: "Omits one or more required schema properties"

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  serving-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: functioncraft-api
+    command: uvicorn src.serving.app:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - ENGINE_TYPE=mock
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+
+  ui-playground:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: functioncraft-ui
+    command: streamlit run src/ui/app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    depends_on:
+      - serving-api
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+    restart: unless-stopped

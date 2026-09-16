@@ -1,0 +1,29 @@
+# Comprehensive Evaluation Suite Configuration
+evaluation:
+  test_dataset_path: "data/processed/test_eval.json"
+  batch_size: 8
+  temperature: 0.0 # Deterministic evaluation for reproducibility
+  max_new_tokens: 512
+
+benchmarks:
+  schema_adherence:
+    strict_json: true
+    validate_types: true
+    min_pass_threshold: 0.95 # 95% threshold for production readiness
+
+  tool_selection:
+    metrics: ["precision", "recall", "f1"]
+    min_f1_threshold: 0.92
+
+  argument_extraction:
+    exact_match_weight: 0.5
+    type_match_weight: 0.3
+    semantic_overlap_weight: 0.2
+    min_score_threshold: 0.90
+
+latency_profiling:
+  num_warmup_runs: 5
+  num_benchmark_runs: 30
+  concurrency_levels: [1, 2, 4, 8]
+  measure_ttft: true # Time to first token
+  measure_tps: true # Tokens per second

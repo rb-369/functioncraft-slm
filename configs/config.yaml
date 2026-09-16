@@ -1,0 +1,30 @@
+# Global Project Configuration
+project_name: "functioncraft-slm"
+version: "0.1.0"
+seed: 42
+
+base_model:
+  name: "Qwen/Qwen2.5-1.5B-Instruct"
+  alt_name: "meta-llama/Llama-3.2-1B-Instruct"
+  context_length: 2048
+  torch_dtype: "bfloat16"
+
+paths:
+  schemas_dir: "data/schemas"
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  checkpoints_dir: "checkpoints"
+  output_dir: "outputs"
+  eval_results_dir: "outputs/evaluation"
+
+serving:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  reload: false
+  timeout_keep_alive: 30
+  max_model_len: 2048
+
+logging:
+  level: "INFO"
+  format: "rich"

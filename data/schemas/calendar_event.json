@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "schedule_calendar_event",
+  "description": "Schedules a business meeting or event in Google Workspace or Outlook calendar.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 120,
+        "description": "Title of the calendar event."
+      },
+      "start_time": {
+        "type": "string",
+        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+        "description": "ISO 8601 UTC timestamp for start time (e.g. 2026-09-20T14:00:00Z)."
+      },
+      "duration_minutes": {
+        "type": "integer",
+        "minimum": 15,
+        "maximum": 480,
+        "default": 30,
+        "description": "Meeting length in minutes."
+      },
+      "attendees": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "email"
+        },
+        "description": "List of attendee email addresses."
+      },
+      "location": {
+        "type": "string",
+        "description": "Meeting room name or virtual conference link."
+      }
+    },
+    "required": ["title", "start_time", "duration_minutes", "attendees"],
+    "additionalProperties": false
+  }
+}

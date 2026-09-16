@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "execute_sql_query",
+  "description": "Executes a parameterized read-only SQL query against the analytical warehouse.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "The SQL query to execute. Must be a SELECT statement."
+      },
+      "database": {
+        "type": "string",
+        "enum": ["analytics", "customers", "inventory", "transactions"],
+        "description": "Target database identifier."
+      },
+      "max_rows": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1000,
+        "default": 100,
+        "description": "Maximum number of rows to return."
+      },
+      "timeout_seconds": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 60,
+        "default": 30,
+        "description": "Query execution timeout in seconds."
+      }
+    },
+    "required": ["query", "database"],
+    "additionalProperties": false
+  }
+}

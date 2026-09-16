@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Linting
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Environment & Credentials
+.env
+.env.local
+*.pem
+*.key
+
+# Model weights & Checkpoints
+models/
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+*.gguf
+outputs/
+wandb/
+mlruns/
+
+# Data caches
+data/processed/
+data/cache/
+*.parquet
+*.arrow
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

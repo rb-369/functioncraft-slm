@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "process_payment_refund",
+  "description": "Initiates a refund transaction through Stripe/Adyen with fraud validation parameters.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "transaction_id": {
+        "type": "string",
+        "pattern": "^txn_[a-zA-Z0-9]{12,24}$",
+        "description": "Unique transaction ID (format: txn_...)."
+      },
+      "amount": {
+        "type": "number",
+        "minimum": 0.50,
+        "maximum": 50000.00,
+        "description": "Amount to refund in decimal currency units."
+      },
+      "currency": {
+        "type": "string",
+        "enum": ["USD", "EUR", "GBP", "CAD", "AUD"],
+        "description": "ISO 4217 three-letter currency code."
+      },
+      "reason": {
+        "type": "string",
+        "enum": ["duplicate_charge", "fraudulent", "customer_request", "service_dissatisfaction"],
+        "description": "Standardized reason for the refund."
+      },
+      "notify_customer": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to send an automated confirmation email to the customer."
+      }
+    },
+    "required": ["transaction_id", "amount", "currency", "reason"],
+    "additionalProperties": false
+  }
+}
