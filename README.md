@@ -6,6 +6,7 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.2+-ee4c2c.svg)](https://pytorch.org/)
 [![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face-orange)](https://huggingface.co/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rb-369/functioncraft-slm/blob/main/notebooks/colab_training.ipynb)
 
 > **Enterprise-Grade Small Language Model (1B–3B) Distillation, Alignment (SFT + DPO), and High-Throughput Serving Engine for Zero-Hallucination Tool Calling.**
 
@@ -139,7 +140,9 @@ pytest tests/ -v
 ```
 
 ### 4. 1-Click Cloud Training (Colab / Kaggle)
-Open [`notebooks/colab_training.ipynb`](notebooks/colab_training.ipynb) in Google Colab:
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rb-369/functioncraft-slm/blob/main/notebooks/colab_training.ipynb)
+
+Click the badge above or open [`notebooks/colab_training.ipynb`](notebooks/colab_training.ipynb) in Google Colab:
 - Select GPU Runtime: **T4 or A100**
 - Runs end-to-end QLoRA SFT and DPO alignment in **~20 minutes on free tier**.
 
